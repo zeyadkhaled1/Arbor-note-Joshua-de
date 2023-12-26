@@ -1,0 +1,30 @@
+name: Run Python Script
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        ref: main
+
+        
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11.1'
+
+    - name: Install Python dependencies
+      run: pip install -r requirements.txt
+
+    - name: Install Playwright dependencies
+      run: |
+        playwright install 
+
+    - name: Run Python script
+      run: python main.py
+
