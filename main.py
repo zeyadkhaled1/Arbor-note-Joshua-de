@@ -67,8 +67,12 @@ def upload_pdfs(page:Page):
     table_rows=page.query_selector_all("colgroup#content-GridcolGroup + tbody > tr")
     for row in table_rows:
         date=row.query_selector("td:nth-child(1)").text_content()
+        status=row.query_selector("td:nth-child(9)").text_content().strip()
+        print(date,status)
         if date!=datetime.today().strftime('%m/%d/%Y'):
             break
+        if status!='Approved':
+            continue
         proposal_number=row.query_selector("td:nth-child(2)").text_content()
         project_name=row.query_selector("td:nth-child(5)").text_content()
         with page.expect_popup() as page2_info:
