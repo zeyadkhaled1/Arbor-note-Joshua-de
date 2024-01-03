@@ -25,7 +25,6 @@ def check_date_relation(input_date_str):
     # Convert the input date string to a datetime object
     input_date = datetime.strptime(input_date_str, '%m/%d/%Y')
     day_before_yesterday = datetime.now() - timedelta(days=2)
-
     # Compare the input date with today, yesterday, and the day before yesterday
     return input_date.date() >= day_before_yesterday.date()
 
@@ -87,11 +86,6 @@ def upload_pdfs(page:Page):
     page.wait_for_timeout(5000)
     page.get_by_text("Created",exact=True).click()
     file_names=list_pdf_files_in_folder()
-    # Get today's date
-    datetime.strptime
-    two_days_ago = datetime.now()-timedelta(days=2)
-    # Format the date as needed
-    two_days_ago_formatted = two_days_ago.strftime('%m/%d/%Y')
     table_rows=page.query_selector_all("colgroup#content-GridcolGroup + tbody > tr")
     for row in table_rows:
         date=row.query_selector("td:nth-child(1)").text_content()
