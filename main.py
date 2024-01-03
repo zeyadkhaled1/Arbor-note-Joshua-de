@@ -17,7 +17,6 @@ def list_pdf_files_in_folder():
     # List all PDF files in the folder
     results = drive_service.files().list(q=f"'{folder_id}' in parents and mimeType='application/pdf'", fields="files(name)").execute()
     files = results.get('files', [])
-
     return [file['name'] for file in files] if files else []
 
 
