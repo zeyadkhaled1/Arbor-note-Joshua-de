@@ -73,7 +73,7 @@ def login(page:Page):
     page.wait_for_timeout(8000)
 
 def upload_excel(page:Page):
-    page.wait_for_timeout(60000)
+    page.wait_for_timeout(90000)
     with page.expect_download(timeout=60000) as download_info:
         page.wait_for_selector("#Grid_excelexport").click(force=True,timeout=60000)
     download = download_info.value
@@ -113,7 +113,7 @@ def upload_pdfs(page:Page):
     
 def Automation_Process():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         login(page)
         page.goto("https://app.arbor-note.com/ng/#/sales/report",timeout=100000)
